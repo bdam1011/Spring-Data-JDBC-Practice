@@ -2,16 +2,16 @@ package com.harry.domain;
 
 import lombok.Data;
 
+
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 
 @Data
-public class TistTeacher {
-
-    private Integer teacherId;
+public class Student {
+    private Integer Id;
     private String name;
-    private Double teachingScore;
+    private LocalDate admissionDate;
     private Timestamp updateTime;
-
+    private Integer teacherId;
 }
