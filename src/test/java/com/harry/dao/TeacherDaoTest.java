@@ -30,17 +30,13 @@ public class TeacherDaoTest {
 
     @Test
     public void testFindOne() {
-        ArrayList<Object> expected = new ArrayList<Object>(3) {{
-            add(1);
-            add("John");
-            add(7.6);
-        }};
-        Teacher target = dao.findOne(1);
-        ArrayList<Object> actual = new ArrayList<Object>(3) {{
-            add(target.getId());
-            add(target.getName());
-            add(target.getTeachingScore());
-        }};
+        Teacher expected = new Teacher();
+        expected.setId(1);
+        expected.setName("John");
+        expected.setTeachingScore(7.6);
+
+        Teacher actual = dao.findOne(1);
+        actual.setUpdateTime(null);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -54,17 +50,13 @@ public class TeacherDaoTest {
         int result = dao.add(teacher);
         Assertions.assertEquals(changeRowExpected, result);
 
-        ArrayList<Object> expected = new ArrayList<Object>(3) {{
-            add(teacher.getId());
-            add(teacher.getName());
-            add(teacher.getTeachingScore());
-        }};
-        Teacher target = dao.findOne(4);
-        ArrayList<Object> actual = new ArrayList<Object>(3) {{
-            add(target.getId());
-            add(target.getName());
-            add(target.getTeachingScore());
-        }};
+        Teacher expected = new Teacher();
+        expected.setId(teacher.getId());
+        expected.setName(teacher.getName());
+        expected.setTeachingScore(teacher.getTeachingScore());
+
+        Teacher actual = dao.findOne(4);
+        actual.setUpdateTime(null);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -77,15 +69,14 @@ public class TeacherDaoTest {
         int result = dao.update(teacher);
         Assertions.assertEquals(changeRowExpected, result);
 
-        ArrayList<Object> expected = new ArrayList<Object>(2) {{
-            add(teacher.getName());
-            add(teacher.getTeachingScore());
-        }};
-        Teacher target = dao.findOne(3);
-        ArrayList<Object> actual = new ArrayList<Object>(2) {{
-            add(target.getName());
-            add(target.getTeachingScore());
-        }};
+        Teacher expected = new Teacher();
+        expected.setId(teacher.getId());
+        expected.setName(teacher.getName());
+        expected.setTeachingScore(teacher.getTeachingScore());
+
+        Teacher actual = dao.findOne(3);
+        actual.setUpdateTime(null);
+
         Assertions.assertEquals(expected, actual);
 
     }

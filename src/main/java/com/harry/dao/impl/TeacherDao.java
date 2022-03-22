@@ -16,6 +16,7 @@ public class TeacherDao extends AbstractDao<Teacher> implements TeacherDaoInterf
     }
 
     @Resource
+
     private JdbcTemplate jdbcTemplate;
 
     @Override

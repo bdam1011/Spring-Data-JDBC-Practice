@@ -32,13 +32,16 @@ public class StudentDaoTest {
 
     @Test
     public void testFindOne() {
-        Object[] expected = new Object[]{2, "Frank",
-                LocalDate.of(2022, 3, 10), 1};
-        Student target = dao.findOne(2);
-        Object[] actual = new Object[]{target.getId(), target.getName(),
-                target.getAdmissionDate(), target.getTeacherId()};
+        Student expected = new Student();
+        expected.setId(2);
+        expected.setName("Frank");
+        expected.setAdmissionDate(LocalDate.of(2022, 03, 10));
+        expected.setTeacherId(1);
 
-        Assertions.assertArrayEquals(expected, actual);
+        Student actual = dao.findOne(2);
+        actual.setUpdateTime(null);
+
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
@@ -52,12 +55,16 @@ public class StudentDaoTest {
         int result = dao.add(student);
         Assertions.assertEquals(changeRowExpected, result);
 
-        Object[] expected = new Object[]{student.getId(), student.getName(),
-                student.getAdmissionDate(), student.getTeacherId()};
-        Student target = dao.findOne(4);
-        Object[] actual = new Object[]{target.getId(), target.getName(),
-                target.getAdmissionDate(), target.getTeacherId()};
-        Assertions.assertArrayEquals(expected, actual);
+        Student expected = new Student();
+        expected.setId(student.getId());
+        expected.setName(student.getName());
+        expected.setAdmissionDate(student.getAdmissionDate());
+        expected.setTeacherId(student.getTeacherId());
+
+        Student actual = dao.findOne(4);
+        actual.setUpdateTime(null);
+
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -71,12 +78,16 @@ public class StudentDaoTest {
         int result = dao.update(student);
         Assertions.assertEquals(changeRowExpected, result);
 
-        Object[] expected = new Object[]{student.getId(), student.getName(),
-                student.getAdmissionDate(), student.getTeacherId()};
-        Student target = dao.findOne(2);
-        Object[] actual = new Object[]{target.getId(), target.getName(),
-                target.getAdmissionDate(), target.getTeacherId()};
-        Assertions.assertArrayEquals(expected, actual);
+        Student expected = new Student();
+        expected.setId(student.getId());
+        expected.setName(student.getName());
+        expected.setAdmissionDate(student.getAdmissionDate());
+        expected.setTeacherId(student.getTeacherId());
+
+        Student actual = dao.findOne(2);
+        actual.setUpdateTime(null);
+
+        Assertions.assertEquals(expected, actual);
 
     }
 
