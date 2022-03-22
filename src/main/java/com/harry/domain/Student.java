@@ -2,7 +2,6 @@ package com.harry.domain;
 
 import lombok.Data;
 
-
 import java.sql.Timestamp;
 import java.time.LocalDate;
 

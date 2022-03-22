@@ -17,7 +17,7 @@ public class StudentRowMapper implements RowMapper<Student> {
         student.setName(rs.getString("name_"));
         student.setUpdateTime(rs.getTimestamp("update_time_"));
         student.setAdmissionDate(rs.getDate("admission_date_").toLocalDate());
-        student.setTeacherId(rs.getInt("teacher_id_"));
+        student.setTeacherId(rs.getInt("fk_tist_teacher_"));
         return student;
     }
 }

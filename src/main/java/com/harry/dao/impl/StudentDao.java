@@ -21,14 +21,14 @@ public class StudentDao extends AbstractDao<Student> implements StudentDaoInterf
 
     @Override
     public int add(Student student) {
-        return jdbcTemplate.update("insert into tist_student (id_, name_, admission_date_, teacher_id_)" +
+        return jdbcTemplate.update("insert into tist_student (id_, name_, admission_date_, fk_tist_teacher_)" +
                         "values(?,?,?,?)", student.getId(), student.getName(),
                 java.sql.Date.valueOf(student.getAdmissionDate()), student.getTeacherId());
     }
 
     @Override
     public int update(Student student) {
-        return jdbcTemplate.update("update tist_student set name_=?,admission_date_=?,teacher_id_=?" +
+        return jdbcTemplate.update("update tist_student set name_=?,admission_date_=?,fk_tist_teacher_=?" +
                 " where id_=?", student.getName(), java.sql.Date.valueOf(student.getAdmissionDate()),
                 student.getTeacherId(),student.getId());
     }
