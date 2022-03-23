@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @EqualsAndHashCode
 public class Teacher {
 
-    private Integer Id;
+    private Integer id;
     private String name;
     private Double teachingScore;
     private Timestamp updateTime;

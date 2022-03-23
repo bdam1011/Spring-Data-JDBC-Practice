@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 
+
 @Repository
 public class StudentServiceImpl extends ServiceInterfaceImpl<Student> implements StudentService {
 
