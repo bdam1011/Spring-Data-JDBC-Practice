@@ -14,10 +14,10 @@ public interface DaoInterface<T> {
 
     List<T> findAll();
 
-    int add(T t);
+    T add(T t);
 
-    int update(T t);
+    T update(T t);
 
-    int delete(Integer id);
+    boolean delete(Integer id);
 
 }

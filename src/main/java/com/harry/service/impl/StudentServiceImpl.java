@@ -18,20 +18,13 @@ public class StudentServiceImpl extends ServiceInterfaceImpl<Student> implements
 
     @Override
     public Student add(Student student) {
-        Student result = null;
 
         Student newStudent = new Student();
         newStudent.setId(student.getId());
         newStudent.setName(student.getName());
         newStudent.setAdmissionDate(student.getAdmissionDate());
         newStudent.setTeacherId(student.getTeacherId());
-
-        int target = this.getDao().add(newStudent);
-        if (target == 1) {
-            result = newStudent;
-            return result;
-        }
-        return result;
+        return this.getDao().add(newStudent);
     }
 
     @Override
@@ -43,11 +36,7 @@ public class StudentServiceImpl extends ServiceInterfaceImpl<Student> implements
             target.setAdmissionDate(student.getAdmissionDate());
             target.setTeacherId(student.getTeacherId());
 
-            int change = this.getDao().update(target);
-            if (change == 1) {
-                result = target;
-                return result;
-            }
+            result = this.getDao().update(target);
         }
         return result;
     }

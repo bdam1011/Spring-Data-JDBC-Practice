@@ -18,20 +18,12 @@ public class TeacherServiceImpl extends ServiceInterfaceImpl<Teacher> implements
     @Override
     public Teacher add(Teacher teacher) {
 
-        Teacher result = null;
-
         Teacher newTeacher = new Teacher();
         newTeacher.setId(teacher.getId());
         newTeacher.setName(teacher.getName());
         newTeacher.setTeachingScore(teacher.getTeachingScore());
 
-        int target = this.getDao().add(newTeacher);
-        if (target == 1) {
-            result = newTeacher;
-            return result;
-        }
-
-        return result;
+        return this.getDao().add(newTeacher);
     }
 
     @Override
@@ -43,11 +35,7 @@ public class TeacherServiceImpl extends ServiceInterfaceImpl<Teacher> implements
             target.setName(teacher.getName());
             target.setTeachingScore(teacher.getTeachingScore());
 
-            int change = this.getDao().update(target);
-            if (change == 1) {
-                result = target;
-                return result;
-            }
+            result = this.getDao().update(target);
         }
         return result;
     }

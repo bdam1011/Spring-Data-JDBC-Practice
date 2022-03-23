@@ -51,9 +51,9 @@ public class StudentDaoTest {
         student.setName("Louis");
         student.setAdmissionDate(LocalDate.of(2022, 03, 22));
         student.setTeacherId(3);
-        Integer changeRowExpected = 1;
-        int result = dao.add(student);
-        Assertions.assertEquals(changeRowExpected, result);
+
+        Student result = dao.add(student);
+        Assertions.assertNotNull(result);
 
         Student expected = new Student();
         expected.setId(student.getId());
@@ -74,9 +74,10 @@ public class StudentDaoTest {
         student.setName("Bazz");
         student.setAdmissionDate(LocalDate.of(2022, 01, 01));
         student.setTeacherId(3);
-        Integer changeRowExpected = 1;
-        int result = dao.update(student);
-        Assertions.assertEquals(changeRowExpected, result);
+
+        Student result = dao.update(student);
+        Assertions.assertNotNull(result);
+
 
         Student expected = new Student();
         expected.setId(student.getId());
@@ -97,9 +98,9 @@ public class StudentDaoTest {
         Student student = dao.findOne(2);
         Assertions.assertNotNull(student);
 
-        Integer changeRowExpected = 1;
-        int result = dao.delete(student.getId());
-        Assertions.assertEquals(changeRowExpected, result);
+        boolean expected = true;
+        boolean actual = dao.delete(student.getId());
+        Assertions.assertEquals(expected, actual);
 
         Student target = dao.findOne(2);
         Assertions.assertNull(target);

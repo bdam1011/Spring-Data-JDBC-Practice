@@ -9,7 +9,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -46,9 +45,9 @@ public class TeacherDaoTest {
         teacher.setId(4);
         teacher.setName("Mary");
         teacher.setTeachingScore(8.9);
-        Integer changeRowExpected = 1;
-        int result = dao.add(teacher);
-        Assertions.assertEquals(changeRowExpected, result);
+
+        Teacher result = dao.add(teacher);
+        Assertions.assertNotNull(result);
 
         Teacher expected = new Teacher();
         expected.setId(teacher.getId());
@@ -65,9 +64,9 @@ public class TeacherDaoTest {
         Teacher teacher = dao.findOne(3);
         teacher.setName("Clark");
         teacher.setTeachingScore(7.4);
-        Integer changeRowExpected = 1;
-        int result = dao.update(teacher);
-        Assertions.assertEquals(changeRowExpected, result);
+
+        Teacher result = dao.update(teacher);
+        Assertions.assertNotNull(result);
 
         Teacher expected = new Teacher();
         expected.setId(teacher.getId());
@@ -85,9 +84,10 @@ public class TeacherDaoTest {
     public void testDelete() {
         Teacher teacher = dao.findOne(1);
         Assertions.assertNotNull(teacher);
-        Integer changeRowExpected = 1;
-        int result = dao.delete(1);
-        Assertions.assertEquals(changeRowExpected, result);
+
+        boolean expected = true;
+        boolean actual = dao.delete(1);
+        Assertions.assertEquals(expected, actual);
 
         Teacher target = dao.findOne(1);
         Assertions.assertNull(target);

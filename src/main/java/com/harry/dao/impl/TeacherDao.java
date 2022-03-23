@@ -20,14 +20,24 @@ public class TeacherDao extends AbstractDao<Teacher> implements TeacherDaoInterf
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public int add(Teacher teacher) {
-        return jdbcTemplate.update("insert into tist_teacher (id_, name_, teaching_score_) values(?,?,?)",
+    public Teacher add(Teacher teacher) {
+        Teacher result = null;
+        int target =  jdbcTemplate.update("insert into tist_teacher (id_, name_, teaching_score_) values(?,?,?)",
                 teacher.getId(),teacher.getName(),teacher.getTeachingScore());
+        if(target ==1){
+            result = this.findOne(teacher.getId());
+        }
+        return result;
     }
 
     @Override
-    public int update(Teacher teacher) {
-        return jdbcTemplate.update("update tist_teacher set name_=?,teaching_score_=?where id_=?",
+    public Teacher update(Teacher teacher) {
+        Teacher result = null;
+        int target =  jdbcTemplate.update("update tist_teacher set name_=?,teaching_score_=?where id_=?",
                 teacher.getName(), teacher.getTeachingScore(), teacher.getId());
+        if(target ==1){
+            result = this.findOne(teacher.getId());
+        }
+        return result;
     }
 }

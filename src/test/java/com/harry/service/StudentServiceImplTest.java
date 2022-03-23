@@ -33,7 +33,7 @@ public class StudentServiceImplTest {
         Student expected = new Student();
         expected.setId(2);
         expected.setName("Frank");
-        expected.setAdmissionDate(LocalDate.of(2022, 03, 10));
+        expected.setAdmissionDate(LocalDate.of(2022, 3, 10));
         expected.setTeacherId(1);
 
         Student actual = studentService.findOne(2);
@@ -47,7 +47,7 @@ public class StudentServiceImplTest {
         Student newStudent = new Student();
         newStudent.setId(4);
         newStudent.setName("Louis");
-        newStudent.setAdmissionDate(LocalDate.of(2022, 03, 22));
+        newStudent.setAdmissionDate(LocalDate.of(2022, 3, 22));
         newStudent.setTeacherId(2);
         Student result = studentService.add(newStudent);
         Assertions.assertNotNull(result);
@@ -68,7 +68,7 @@ public class StudentServiceImplTest {
     public void testUpdate(){
         Student student = studentService.findOne(2);
         student.setName("Bazz");
-        student.setAdmissionDate(LocalDate.of(2022, 01, 01));
+        student.setAdmissionDate(LocalDate.of(2022, 1, 1));
         student.setTeacherId(3);
         Student result = studentService.update(student);
         Assertions.assertNotNull(result);

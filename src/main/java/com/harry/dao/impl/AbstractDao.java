@@ -46,7 +46,14 @@ public abstract class AbstractDao<T> implements DaoInterface<T> {
     }
 
     @Override
-    public int delete(Integer id) {
-        return jdbcTemplate.update("delete from " + tableName + " where id_=?", id);
+    public boolean delete(Integer id) {
+        boolean result = false;
+        if (this.findOne(id) != null) {
+            int target = jdbcTemplate.update("delete from " + tableName + " where id_=?", id);
+            if (target == 1) {
+                result = true;
+            }
+        }
+        return result;
     }
 }

@@ -22,16 +22,12 @@ public abstract class ServiceInterfaceImpl<T> implements ServiceInterface<T> {
 
     @Override
     public T findOne(Integer id) {
-        T result = null;
-        result = dao.findOne(id);
-        return result;
+        return dao.findOne(id);
     }
 
     @Override
     public List<T> findAll() {
-        List<T> result = null;
-        result = dao.findAll();
-        return result;
+        return dao.findAll();
     }
 
 //    @Override
@@ -46,13 +42,6 @@ public abstract class ServiceInterfaceImpl<T> implements ServiceInterface<T> {
 
     @Override
     public boolean delete(Integer id) {
-        boolean result = false;
-        T target = dao.findOne(id);
-        if (target != null) {
-            if(dao.delete(id)==1){
-                result = true;
-            }
-        }
-        return result;
+        return dao.delete(id);
     }
 }
