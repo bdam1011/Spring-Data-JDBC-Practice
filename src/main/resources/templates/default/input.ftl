@@ -12,12 +12,15 @@
     <#assign action="/add" />
 </#if>
 <form action="<@spring.url action />" method="post">
-    <label for="id">id : </label><label>
+    <label for="id">id : </label>
+    <label>
         <input name="id" value="${student.id!}" <#if (student.id)??>readonly</#if> />
     </label><br/>
     <label for="name">name : </label><@spring.formInput path="student.name" /><br>
+
     <label for="admission-date">admission date : </label>
     <input name="admission-date" type="date" value="${student.admissionDate!}"/><br>
+
     <label for="teacher-id">teacher id : </label><@spring.formInput path="student.teacherId" /><br>
     <button>submit</button>
 </form>

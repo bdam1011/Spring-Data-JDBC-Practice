@@ -17,8 +17,6 @@
     </label><br/>
     <label for="name">name : </label><@spring.formInput path="teacher.name" /><br>
     <label for="teaching-score">teaching score : </label><@spring.formInput path="teacher.teachingScore" /><br>
-    <#--    <label for="teaching-score">teaching score : </label>-->
-    <#--    <input name="teaching-score" value="${teacher.teachingScore!}"/><br>-->
     <button>submit</button>
 </form>
 </body>
