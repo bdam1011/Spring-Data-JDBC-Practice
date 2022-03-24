@@ -9,6 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.util.List;
 
 @SpringBootTest
@@ -33,9 +34,9 @@ public class TeacherDaoTest {
         expected.setId(1);
         expected.setName("John");
         expected.setTeachingScore(7.6);
+        expected.setUpdateTime(Timestamp.valueOf("2022-05-31 09:26:50"));
 
         Teacher actual = dao.findOne(1);
-        actual.setUpdateTime(null);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -53,9 +54,9 @@ public class TeacherDaoTest {
         expected.setId(teacher.getId());
         expected.setName(teacher.getName());
         expected.setTeachingScore(teacher.getTeachingScore());
+        expected.setUpdateTime(result.getUpdateTime());
 
         Teacher actual = dao.findOne(4);
-        actual.setUpdateTime(null);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -72,10 +73,9 @@ public class TeacherDaoTest {
         expected.setId(teacher.getId());
         expected.setName(teacher.getName());
         expected.setTeachingScore(teacher.getTeachingScore());
+        expected.setUpdateTime(result.getUpdateTime());
 
         Teacher actual = dao.findOne(3);
-        actual.setUpdateTime(null);
-
         Assertions.assertEquals(expected, actual);
 
     }

@@ -10,6 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -36,10 +37,10 @@ public class StudentDaoTest {
         expected.setId(2);
         expected.setName("Frank");
         expected.setAdmissionDate(LocalDate.of(2022, 03, 10));
+        expected.setUpdateTime(Timestamp.valueOf("2020-06-15 09:26:50"));
         expected.setTeacherId(1);
 
         Student actual = dao.findOne(2);
-        actual.setUpdateTime(null);
 
         Assertions.assertEquals(expected, actual);
     }
@@ -59,11 +60,10 @@ public class StudentDaoTest {
         expected.setId(student.getId());
         expected.setName(student.getName());
         expected.setAdmissionDate(student.getAdmissionDate());
+        expected.setUpdateTime(result.getUpdateTime());
         expected.setTeacherId(student.getTeacherId());
 
         Student actual = dao.findOne(4);
-        actual.setUpdateTime(null);
-
         Assertions.assertEquals(expected, actual);
 
     }
@@ -83,11 +83,10 @@ public class StudentDaoTest {
         expected.setId(student.getId());
         expected.setName(student.getName());
         expected.setAdmissionDate(student.getAdmissionDate());
+        expected.setUpdateTime(result.getUpdateTime());
         expected.setTeacherId(student.getTeacherId());
 
         Student actual = dao.findOne(2);
-        actual.setUpdateTime(null);
-
         Assertions.assertEquals(expected, actual);
 
     }

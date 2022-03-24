@@ -9,6 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -35,9 +36,9 @@ public class StudentServiceImplTest {
         expected.setName("Frank");
         expected.setAdmissionDate(LocalDate.of(2022, 3, 10));
         expected.setTeacherId(1);
+        expected.setUpdateTime(Timestamp.valueOf("2020-06-15 09:26:50"));
 
         Student actual = studentService.findOne(2);
-        actual.setUpdateTime(null);
 
         Assertions.assertEquals(expected, actual);
     }
@@ -56,10 +57,10 @@ public class StudentServiceImplTest {
         expected.setId(newStudent.getId());
         expected.setName(newStudent.getName());
         expected.setAdmissionDate(newStudent.getAdmissionDate());
+        expected.setUpdateTime(result.getUpdateTime());
         expected.setTeacherId(newStudent.getTeacherId());
 
         Student actual = studentService.findOne(4);
-        actual.setUpdateTime(null);
         Assertions.assertEquals(expected, actual);
 
     }
@@ -78,9 +79,9 @@ public class StudentServiceImplTest {
         expected.setName(student.getName());
         expected.setAdmissionDate(student.getAdmissionDate());
         expected.setTeacherId(student.getTeacherId());
+        expected.setUpdateTime(result.getUpdateTime());
 
         Student actual = studentService.findOne(2);
-        actual.setUpdateTime(null);
         Assertions.assertEquals(expected, actual);
 
     }

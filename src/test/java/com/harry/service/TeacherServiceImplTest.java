@@ -9,6 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.util.List;
 
 @SpringBootTest
@@ -34,10 +35,9 @@ public class TeacherServiceImplTest {
         expected.setId(1);
         expected.setName("John");
         expected.setTeachingScore(7.6);
+        expected.setUpdateTime(Timestamp.valueOf("2022-05-31 09:26:50"));
 
         Teacher actual = teacherService.findOne(1);
-        actual.setUpdateTime(null);
-
         Assertions.assertEquals(expected, actual);
     }
 
@@ -54,9 +54,9 @@ public class TeacherServiceImplTest {
         expected.setId(newTeacher.getId());
         expected.setName(newTeacher.getName());
         expected.setTeachingScore(newTeacher.getTeachingScore());
+        expected.setUpdateTime(result.getUpdateTime());
 
         Teacher actual = teacherService.findOne(4);
-        actual.setUpdateTime(null);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -72,9 +72,9 @@ public class TeacherServiceImplTest {
         expected.setId(target.getId());
         expected.setName(target.getName());
         expected.setTeachingScore(target.getTeachingScore());
+        expected.setUpdateTime(result.getUpdateTime());
 
         Teacher actual = teacherService.findOne(3);
-        actual.setUpdateTime(null);
         Assertions.assertEquals(expected, actual);
 
     }
