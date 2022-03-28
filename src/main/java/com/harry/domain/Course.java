@@ -6,16 +6,12 @@ import lombok.EqualsAndHashCode;
 import java.sql.Timestamp;
 import java.util.List;
 
-
 @Data
 @EqualsAndHashCode
-public class Teacher {
-
-    private Integer Id;
+public class Course {
+    private Integer id;
     private String name;
-    private Double teachingScore;
+    private Double fee;
     private Timestamp updateTime;
-    private List<Student> students;
-    private List<Course> courses;
-
+    private List<Teacher> teachers;
 }

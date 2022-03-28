@@ -1,6 +1,7 @@
 package com.harry.service.impl;
 
 import com.harry.dao.DaoInterface;
+import com.harry.dao.TeacherDaoInterface;
 import com.harry.domain.Teacher;
 import com.harry.service.TeacherService;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class TeacherServiceImpl extends ServiceInterfaceImpl<Teacher> implements
     public void setDao(DaoInterface<Teacher> dao) {
         super.setDao(dao);
     }
+
+    @Resource
+    public TeacherDaoInterface teacherDaoInterface;
 
     @Override
     public Teacher add(Teacher teacher) {
@@ -41,4 +45,13 @@ public class TeacherServiceImpl extends ServiceInterfaceImpl<Teacher> implements
     }
 
 
+    @Override
+    public Teacher findStudentsWithTeacher(Integer id) {
+        return teacherDaoInterface.findStudentsWithTeacher(id);
+    }
+
+    @Override
+    public Teacher findCoursesWithTeacher(Integer id) {
+        return teacherDaoInterface.findCoursesWithTeacher(id);
+    }
 }

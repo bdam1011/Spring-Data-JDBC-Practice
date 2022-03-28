@@ -25,7 +25,7 @@ public class StudentDao extends AbstractDao<Student> implements StudentDaoInterf
         int target = jdbcTemplate.update("insert into tist_student (id_, name_, admission_date_, fk_tist_teacher_)" +
                         "values(?,?,?,?)", student.getId(), student.getName(),
                 java.sql.Date.valueOf(student.getAdmissionDate()), student.getTeacherId());
-        if(target==1){
+        if (target == 1) {
             result = this.findOne(student.getId());
         }
         return result;
@@ -35,9 +35,9 @@ public class StudentDao extends AbstractDao<Student> implements StudentDaoInterf
     public Student update(Student student) {
         Student result = null;
         int target = jdbcTemplate.update("update tist_student set name_=?,admission_date_=?,fk_tist_teacher_=?" +
-                " where id_=?", student.getName(), java.sql.Date.valueOf(student.getAdmissionDate()),
-                student.getTeacherId(),student.getId());
-        if(target==1){
+                        " where id_=?", student.getName(), java.sql.Date.valueOf(student.getAdmissionDate()),
+                student.getTeacherId(), student.getId());
+        if (target == 1) {
             result = this.findOne(student.getId());
         }
         return result;

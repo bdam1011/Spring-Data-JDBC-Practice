@@ -3,12 +3,12 @@ package com.harry.service.impl;
 import com.harry.dao.DaoInterface;
 import com.harry.domain.Student;
 import com.harry.service.StudentService;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 
-@Repository
+@Service
 public class StudentServiceImpl extends ServiceInterfaceImpl<Student> implements StudentService {
 
 

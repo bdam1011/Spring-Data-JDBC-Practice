@@ -15,7 +15,6 @@ public abstract class AbstractDao<T> implements DaoInterface<T> {
     @Resource
     private JdbcTemplate jdbcTemplate;
 
-
     @Override
     public void setTableName(String tableName) {
         this.tableName = tableName;
@@ -25,7 +24,7 @@ public abstract class AbstractDao<T> implements DaoInterface<T> {
     public void setRowMapper(RowMapper<T> rowMapper) {
         this.rowMapper = rowMapper;
     }
-
+    
     @Override
     public T findOne(Integer id) {
         try {

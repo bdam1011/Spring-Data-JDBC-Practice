@@ -1,8 +1,8 @@
 package com.harry.web;
 
 
-import com.harry.domain.Teacher;
-import com.harry.service.TeacherService;
+import com.harry.domain.Course;
+import com.harry.service.CourseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 
 /**
- * TeacherController
+ * CourseController
  *
  * @author harrywang
  */
 @Controller
-@RequestMapping("/teacher")
-public class TeacherController {
+@RequestMapping("/course")
+public class CourseController {
 
     @Resource
-    private TeacherService teacherService;
+    private CourseService courseService;
 
     @RequestMapping("")
     public String index() {
@@ -31,25 +31,25 @@ public class TeacherController {
 
     @GetMapping("add")
     private String add(Model model) {
-        model.addAttribute("teacher", new Teacher());
-        return "/inputTeacher";
+        model.addAttribute("course", new Course());
+        return "/input-course";
     }
 
     @PostMapping("add")
-    private String insert(Teacher teacher) {
-        teacherService.add(teacher);
+    private String insert(Course course) {
+        courseService.add(course);
         return "/index";
     }
 
-    @GetMapping("update")
+    @GetMapping("update/{id}")
     private String edit(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("teacher", teacherService.findOne(id));
-        return "/inputTeacher";
+        model.addAttribute("course", courseService.findOne(id));
+        return "/input-course";
     }
 
     @PostMapping("update")
-    private String update(Teacher teacher) {
-        teacherService.update(teacher);
+    private String update(Course course) {
+        courseService.update(course);
         return "/index";
     }
 
