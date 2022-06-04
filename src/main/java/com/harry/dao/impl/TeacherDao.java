@@ -57,7 +57,7 @@ public class TeacherDao extends AbstractDao<Teacher> implements TeacherDaoInterf
                         "t.id_ ,t.name_ ,t.teaching_score_,t.update_time_ ," +
                         "s.id_ sid ,s.name_ sname,s.admission_date_ sdate,s.update_time_ supdate  " +
                         "from tist_teacher t " +
-                        "left join tist_student s " +
+                        "inner join tist_student s " +
                         "on t.id_ = fk_tist_teacher_ where t.id_=?", new ResultSetExtractor<Teacher>() {
                     @Override
                     public Teacher extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -94,7 +94,7 @@ public class TeacherDao extends AbstractDao<Teacher> implements TeacherDaoInterf
                         "from tist_teacher t " +
                         "inner join tist_teacher_course m " +
                         "on t.id_ = m.fk_tist_teacher_ " +
-                        "left join tist_course c " +
+                        "inner join tist_course c " +
                         "on m.fk_tist_course_ = c.id_ " +
                         "where t.id_ =?", new ResultSetExtractor<Teacher>() {
                     @Override

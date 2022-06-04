@@ -5,12 +5,10 @@ import com.harry.domain.Teacher;
 import com.harry.service.TeacherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * TeacherController
@@ -32,7 +30,7 @@ public class TeacherController {
     @GetMapping("add")
     private String add(Model model) {
         model.addAttribute("teacher", new Teacher());
-        return "/inputTeacher";
+        return "/input-teacher";
     }
 
     @PostMapping("add")
@@ -41,16 +39,28 @@ public class TeacherController {
         return "/index";
     }
 
-    @GetMapping("update")
+    @GetMapping("update/{id}")
     private String edit(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("teacher", teacherService.findOne(id));
-        return "/inputTeacher";
+        return "/input-teacher";
     }
 
     @PostMapping("update")
     private String update(Teacher teacher) {
         teacherService.update(teacher);
         return "/index";
+    }
+
+    @GetMapping("/get-one/{id}")
+    @ResponseBody
+    public Teacher getOne(@PathVariable("id") Integer id) {
+        return teacherService.findOne(id);
+    }
+
+    @GetMapping("/get-all")
+    @ResponseBody
+    public List<Teacher> getALL() {
+        return teacherService.findAll();
     }
 
 

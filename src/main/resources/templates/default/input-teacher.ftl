@@ -12,7 +12,39 @@
             $("input").each(function () {
                 console.log($(this).attr("name") + " : " + $(this).val());
             });
-        })
+        });
+
+        $('#fill').click(function () {
+            console.log($('#query'));
+            $.getJSON('/teacher/get-one/' + $('#query').val(), function (data) {
+                console.log(data);
+                $('input[name="id"]').val(data.id);
+                $('input[name="name"]').val(data.name);
+                $('input[name="teachingScore"]').val(data.teachingScore);
+            });
+        });
+
+        $('#query-all').click(function () {
+            $.getJSON('/teacher/get-all', function (data) {
+                console.log(data);
+                $('.container').append('<table>');
+                $('table').append('<tr><th>Id</th><th>Name</th>' +
+                    '<th>Teaching Score</th><th>Update time</th>')
+                    .addClass('teacher-table');
+
+                for (var teacher of data) {
+                    $('.teacher-table').append($('<tr></tr>').append(
+                        $('<td></td>').text(teacher.id),
+                        $('<td></td>').text(teacher.name),
+                        $('<td></td>').text(teacher.teachingScore),
+                        $('<td></td>').text(teacher.updateTime)));
+                }
+                $('td').css('text-align', 'center');
+                $('table,th,td').css('border', '1px solid')
+
+
+            });
+        });
     });
 
 </script>
@@ -27,10 +59,14 @@
     <input name="id" value="${teacher.id!}" <#if (teacher.id)??>readonly</#if> /><br/>
     <label for="name">name : </label><@spring.formInput path="teacher.name" /><br>
     <label for="teachingScore">teaching score : </label><@spring.formInput path="teacher.teachingScore" /><br>
-    <#--    <label for="teaching-score">teaching score : </label>-->
-    <#--    <input name="teaching-score" value="${teacher.teachingScore!}"/><br>-->
     <button>submit</button>
     <button id="log" type="button">Log Information</button>
 </form>
+<label for="query-id">Fill With ID : </label><input id="query" name="query-id"/>
+<button id="fill" type="button">Fill in</button>
+<br>
+<button id="query-all" type="button">Query ALL</button>
+<div class="container"></div>
+<br>
 </body>
 </html>

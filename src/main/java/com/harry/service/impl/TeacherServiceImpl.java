@@ -9,12 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 @Service
-public class TeacherServiceImpl extends ServiceInterfaceImpl<Teacher> implements TeacherService {
-
-    @Resource
-    public void setDao(DaoInterface<Teacher> dao) {
-        super.setDao(dao);
-    }
+public class TeacherServiceImpl extends ServiceInterfaceImpl<Teacher,TeacherDaoInterface> implements TeacherService {
 
     @Resource
     public TeacherDaoInterface teacherDaoInterface;
@@ -27,7 +22,7 @@ public class TeacherServiceImpl extends ServiceInterfaceImpl<Teacher> implements
         newTeacher.setName(teacher.getName());
         newTeacher.setTeachingScore(teacher.getTeachingScore());
 
-        return this.getDao().add(newTeacher);
+        return getDao().add(newTeacher);
     }
 
     @Override
@@ -35,11 +30,11 @@ public class TeacherServiceImpl extends ServiceInterfaceImpl<Teacher> implements
 
         Teacher result = null;
         if (teacher.getId() != null) {
-            Teacher target = this.getDao().findOne(teacher.getId());
+            Teacher target = getDao().findOne(teacher.getId());
             target.setName(teacher.getName());
             target.setTeachingScore(teacher.getTeachingScore());
 
-            result = this.getDao().update(target);
+            result = getDao().update(target);
         }
         return result;
     }

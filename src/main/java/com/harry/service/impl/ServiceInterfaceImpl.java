@@ -6,18 +6,18 @@ import com.harry.service.ServiceInterface;
 import javax.annotation.Resource;
 import java.util.List;
 
-public abstract class ServiceInterfaceImpl<T> implements ServiceInterface<T> {
-    private DaoInterface<T> dao;
+public abstract class ServiceInterfaceImpl<T,R extends DaoInterface<T>> implements ServiceInterface<T,R > {
+    private R dao;
 
     @Resource
     @Override
-    public void setDao(DaoInterface<T> dao) {
-        this.dao = dao;
+    public void setDao(R dao) {
+        this.dao =  dao;
     }
 
     @Override
-    public DaoInterface<T> getDao() {
-        return dao;
+    public R getDao() {
+        return  dao;
     }
 
     @Override

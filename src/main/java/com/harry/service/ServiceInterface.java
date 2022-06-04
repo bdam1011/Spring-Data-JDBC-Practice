@@ -1,14 +1,15 @@
 package com.harry.service;
 
+
 import com.harry.dao.DaoInterface;
 
 import java.util.List;
 
-public interface ServiceInterface<T> {
+public interface ServiceInterface<T,R extends DaoInterface<T>> {
 
-    void setDao(DaoInterface<T> dao);
+    void setDao(R dao);
 
-    DaoInterface<T> getDao();
+    R getDao();
 
     T findOne(Integer id);
 

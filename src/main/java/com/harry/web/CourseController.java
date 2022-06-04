@@ -5,12 +5,10 @@ import com.harry.domain.Course;
 import com.harry.service.CourseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * CourseController
@@ -51,6 +49,18 @@ public class CourseController {
     private String update(Course course) {
         courseService.update(course);
         return "/index";
+    }
+
+    @GetMapping("/get-one/{id}")
+    @ResponseBody
+    public Course getOne(@PathVariable("id") Integer id) {
+        return courseService.findOne(id);
+    }
+
+    @GetMapping("/get-all")
+    @ResponseBody
+    public List<Course> getALL() {
+        return courseService.findAll();
     }
 
 

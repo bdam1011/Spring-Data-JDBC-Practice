@@ -57,7 +57,7 @@ public class CourseDao extends AbstractDao<Course> implements CourseDaoInterface
                         "from tist_course c " +
                         "inner join tist_teacher_course m " +
                         "on m.fk_tist_course_ = c.id_ " +
-                        "left join tist_teacher t " +
+                        "inner join tist_teacher t " +
                         "on t.id_ = m.fk_tist_teacher_ " +
                         "where c.id_ =?", new ResultSetExtractor<Course>() {
                     @Override
